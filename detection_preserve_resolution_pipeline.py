@@ -21,7 +21,7 @@ from gi.repository import Gst, GLib
 # CONFIGURATION - Edit these paths
 # ============================================================================
 
-DEFAULT_HEF_PATH = "/path/to/your/model.hef"
+DEFAULT_HEF_PATH = "/usr/local/hailo/resources/models/hailo8/yolov8m.hef"
 DEFAULT_POSTPROCESS_SO = "/usr/lib/aarch64-linux-gnu/hailo/tappas/post_processes/libyolo_hailortpp_post.so"
 DEFAULT_NETWORK_NAME = "yolov8"  # or "yolov5", depends on your model
 
