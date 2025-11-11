@@ -23,7 +23,6 @@ from gi.repository import Gst, GLib
 
 DEFAULT_HEF_PATH = "/usr/local/hailo/resources/models/hailo8/yolov8m.hef"
 DEFAULT_POSTPROCESS_SO = "/usr/local/hailo/resources/so/libyolo_hailortpp_postprocess.so"
-DEFAULT_NETWORK_NAME = "yolov8"  # or "yolov5", depends on your model
 
 # Inference resolution (model input size)
 INFERENCE_WIDTH = 640
@@ -51,8 +50,7 @@ def parse_args():
     parser.add_argument("--hef", default=DEFAULT_HEF_PATH, help="HEF model file path")
     parser.add_argument("--postprocess-so", default=DEFAULT_POSTPROCESS_SO, 
                        help="Postprocess .so library path")
-    parser.add_argument("--network-name", default=DEFAULT_NETWORK_NAME,
-                       help="Network function name for hailofilter")
+
     parser.add_argument("--inference-width", type=int, default=INFERENCE_WIDTH,
                        help="Inference width (model input)")
     parser.add_argument("--inference-height", type=int, default=INFERENCE_HEIGHT,
@@ -128,7 +126,7 @@ class ResolutionPreservingPipeline:
             queue leaky=no max-size-buffers=30 max-size-bytes=0 max-size-time=0 !
             hailonet hef-path={self.args.hef} is-active=true {nms_params} !
             queue leaky=no max-size-buffers=30 max-size-bytes=0 max-size-time=0 !
-            hailofilter function-name={self.args.network_name} so-path={self.args.postprocess_so} qos=false !
+            hailofilter so-path={self.args.postprocess_so} qos=false !
             mux.
             
             mux. !
@@ -209,7 +207,6 @@ class ResolutionPreservingPipeline:
         print(f"Output:           {self.args.output}")
         print(f"HEF:              {self.args.hef}")
         print(f"Postprocess:      {self.args.postprocess_so}")
-        print(f"Network:          {self.args.network_name}")
         print(f"Inference size:   {self.args.inference_width}x{self.args.inference_height}")
         print(f"Output bitrate:   {self.args.bitrate} kbps")
         print("=" * 80)
