@@ -22,7 +22,7 @@ from gi.repository import Gst, GLib
 # ============================================================================
 
 DEFAULT_HEF_PATH = "/usr/local/hailo/resources/models/hailo8/yolov8m.hef"
-DEFAULT_POSTPROCESS_SO = "/usr/lib/aarch64-linux-gnu/hailo/tappas/post_processes/libyolo_hailortpp_post.so"
+DEFAULT_POSTPROCESS_SO = "/usr/local/hailo/resources/so/libyolo_hailortpp_postprocess.so"
 DEFAULT_NETWORK_NAME = "yolov8"  # or "yolov5", depends on your model
 
 # Inference resolution (model input size)
