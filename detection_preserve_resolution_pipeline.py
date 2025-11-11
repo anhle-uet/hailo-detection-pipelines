@@ -21,7 +21,7 @@ from gi.repository import Gst, GLib
 # CONFIGURATION - Edit these paths
 # ============================================================================
 
-DEFAULT_HEF_PATH = "/usr/local/hailo/resources/models/hailo8/yolov8m.hef"
+DEFAULT_HEF_PATH = "/usr/local/hailo/resources/models/hailo8/yolov11m.hef"
 DEFAULT_POSTPROCESS_SO = "/usr/local/hailo/resources/so/libyolo_hailortpp_postprocess.so"
 
 # Inference resolution (model input size)
